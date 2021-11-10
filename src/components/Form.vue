@@ -176,6 +176,7 @@
 					value="no"
 					v-model="formData.isPersonalDataChanged"
 					checked
+          @change="onPersonalDataNotChanged"
 				/><label for="noDataChanged" class="mr10">Нет</label>
 				<input
 					type="radio"
@@ -283,9 +284,12 @@ export default {
 			this.isDropdownPassportTypeOpen = false;
 		},
     onSubmitForm() {
-
       const cleanedObject = pickBy(this.formData, identity)
       console.log(cleanedObject);
+    },
+    onPersonalDataNotChanged() {
+      	this.formData.lastNameDataChanged = "";
+				this.formData.firstNameDataChanged = "";
     }
 	},
 	mounted() {
